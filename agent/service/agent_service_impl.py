@@ -60,8 +60,8 @@ class AgentServiceImpl(Agentservice):
             )
 
             # TODO fix to include <INFO>
-            # if output_messages[0].content.split("\n")[-1].startswith("<INFO>"):
-            self.agent_repository.info = True
+            if output_messages[0].content.split("\n")[-1].startswith("<INFO>"):
+                self.agent_repository.info = True
 
         except Exception as e:
             print(f"error occurred: {e}")

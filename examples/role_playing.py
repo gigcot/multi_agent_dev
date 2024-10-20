@@ -8,8 +8,7 @@ if __name__ == "__main__":
 
     role_playing = RolePlayingServiceImpl(
         model_config=model_config,
-        task_prompt="say only just one alphabet.",
-        # task_prompt="Study partial derivative equation",
+        task_prompt="Study partial derivative equation",
         background_prompt="We are best friends for 10 years from elementry school.",
         assistant_role_name="dave",
         assistant_role_prompt="{background_prompt} You are {assistant_role}, a student. {task} with {user_role}.",
@@ -18,8 +17,7 @@ if __name__ == "__main__":
     )
 
     _, user_message = role_playing.role_playing_repository.init_chat(
-        phase_prompt="say an alphabet in alphabetical order on eachtime starting from a"
-        # phase_prompt="Let's study"
+        phase_prompt="Let's study"
     )
     print()
     print(f"\033[93m{user_message.role_name}\033[0m", ": ", user_message.content)
