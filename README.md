@@ -1,4 +1,4 @@
-# Multi-Agent Development
+# MADE(Multi-Agent Development)
 
 ## Components
 
