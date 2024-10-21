@@ -1,8 +1,6 @@
 from engine import ModelConfig
 from phase.entity.phase_chat_turn_limit import PhaseChatTurnLimit
 from phase.entity.phase_prompts import PhasePrompt
-from phase.entity.role_prompts import RolePrompt
-from phase.entity.role_type import RoleType
 from phase.repository.code_complete.code_complete_phase_repository_impl import (
     CodeCompletePhaseRepositoryImpl,
 )
@@ -29,6 +27,8 @@ from phase.repository.test_modification.test_modification_phase_repository_impl 
     TestModificationPhaseRepositoryImpl,
 )
 from phase.service.phase_service import PhaseService
+from role_playing.entity.role_prompts import RolePrompt
+from role_playing.entity.role_type import RoleType
 
 
 class PhaseServiceImpl(PhaseService):
