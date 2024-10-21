@@ -8,7 +8,8 @@ if __name__ == "__main__":
 
     role_playing = RolePlayingServiceImpl(
         model_config=model_config,
-        task_prompt="Study partial derivative equation",
+        task_prompt="say \"<INFO> hi\" in capital letters",
+        # task_prompt="Study partial derivative equation",
         background_prompt="We are best friends for 10 years from elementry school.",
         assistant_role_name="dave",
         assistant_role_prompt="{background_prompt} You are {assistant_role}, a student. {task} with {user_role}.",
@@ -27,6 +28,9 @@ if __name__ == "__main__":
         )
         print()
         print(f"\033[93m{assistant_response.message.role_name}\033[0m", ": ", assistant_response.message.content)
+        if user_response.message is None:
+            print(f"\033[93m<INFO> found. Terminating role play.\033[0m")
+            break
         print()
         print(f"\033[93m{user_response.message.role_name}\033[0m", ": ", user_response.message.content)
         user_message = user_response.message
