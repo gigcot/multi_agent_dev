@@ -156,3 +156,5 @@ The `EnvStates` class is used to store the state of the environment for the chat
 ## Playground
 
 Everything is in examples folder. You can modify all the configs explained above and run the examples to see the results.
+
+## this repository was modified from [ChatDev:https://github.com/OpenBMB/ChatDev]
