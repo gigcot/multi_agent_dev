@@ -7,7 +7,7 @@ from messages.entity.system_message.base_system_message import BaseSystemMessage
 
 class Chat:
     def __init__(self, model_config: ModelConfig):
-        self.engine = AgentServiceImpl(
+        self.agent = AgentServiceImpl(
             system_message=system_message,
             model_config=model_config,
         )
@@ -23,7 +23,7 @@ class Chat:
                 role_name="onebottlekick", content=f"{prompt}"
             )
 
-            res = self.engine.step(user_message)
+            res = self.agent.step(user_message)
 
             print()
             print("assistant:\n", res.message.content)
