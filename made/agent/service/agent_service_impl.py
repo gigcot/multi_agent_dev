@@ -59,7 +59,6 @@ class AgentServiceImpl(Agentservice):
                 response.usage.total_tokens,
             )
 
-            # TODO fix to include <INFO>
             if output_messages[0].content.split("\n")[-1].startswith("<INFO>"):
                 self.agent_repository.info = True
 

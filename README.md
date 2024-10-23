@@ -52,13 +52,17 @@ The `RoleType` class is used to define the different roles that can be played in
 ```python
 @dataclass
 class RolePrompt:
-    CEO: str = "ceo prompt"
-    ...
-    ...
+    CEO: str = ...
+    CPO: str = ...
+    CTO: str = ...
+    COUNSELOR: str = ...
+    PROGRAMMER: str = ...
+    REVIEWER: str = ...
+    TESTER: str = ...
 """
 ```
 
-The `RolePrompt` class is used to define the prompts for each role. The prompts are used to guide the interactions between the different roles.
+The `RolePrompt` class is used to define the prompts for each role. The prompts are used to guide the interactions between the different roles. You can see the full implementation in the code.
 
 ### Phase
 
@@ -67,12 +71,18 @@ The phase module handles different phases of the software development lifecycle,
 ```python
 @dataclass
 class PhasePrompt:
-    demand_analysis: str = "demand analysis prompt"
-    ...
-    ...
+    demand_analysis: str = ...
+    language_choose: str = ...
+    coding: str = ...
+    code_complete: str = ...
+    code_review_comment: str = ...
+    code_review_modification: str = ...
+    test_error_summary: str = ...
+    test_modification: str = ...
+    manual: str = ...
 ```
 
-The `PhasePrompt` class is used to define the prompts for each phase of the software development lifecycle. The prompts are used to guide the interactions between the different roles during each phase.
+The `PhasePrompt` class is used to define the prompts for each phase of the software development lifecycle. The prompts are used to guide the interactions between the different roles during each phase. The full implementation can be found in the code.
 
 ```python
 @dataclass
@@ -115,6 +125,46 @@ class PhaseChatTurnLimit:
 ```
 
 The `PhaseChatTurnLimit` class is used to define the maximum number of chat turns allowed for each phase of the software development lifecycle.
+
+#### Custom Phase
+
+```python
+@PhaseRegistry.register()
+class ExamplePhase(BasePhaseRepositoryImpl):
+    def __init__(
+        self,
+        model_config: ModelConfig,
+        phase_prompt: str = "discuss about multi llm agents",
+        assistant_role_name: str = "assistant",
+        assistant_role_prompt: str = "You are a helpful {assistant_role}",
+        user_role_name: str = "user",
+        user_role_prompt: str = "You are discussing about {task} with {assistant_role}",
+        chat_turn_limit: int = 5
+    ):
+        super().__init__(
+            model_config=model_config,
+            phase_prompt=phase_prompt,
+            assistant_role_name=assistant_role_name,
+            assistant_role_prompt=assistant_role_prompt,
+            user_role_name=user_role_name,
+            user_role_prompt=user_role_prompt,
+            chat_turn_limit=chat_turn_limit
+        )
+
+    def update_phase_states(self, env: ChatEnvRepositoryImpl):
+        ...
+
+    def update_env_states(self, env: ChatEnvRepositoryImpl):
+        ...
+```
+
+To create a custom phase, you need to create a class that inherits from `BasePhaseRepositoryImpl` and decorate it with the `@PhaseRegistry.register()` decorator. You can then implement the `update_phase_states` and `update_env_states` methods to update the phase and environment states, respectively.
+
+```python
+custom_phase = phase_service.get_phase(phase_name="Example")
+```
+
+You can then use the `get_phase` method of the `PhaseService` class to get an instance of the custom phase.
 
 ### Chat Chain
 

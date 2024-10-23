@@ -1,24 +1,20 @@
 from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
 from made.engine import ModelConfig
 from made.phase import PhaseRegistry
-from made.phase.entity.phase_chat_turn_limit import PhaseChatTurnLimit
-from made.phase.entity.phase_prompts import PhasePrompt
 from made.phase.repository.base_phase_repository_impl import BasePhaseRepositoryImpl
-from made.role_playing.entity.role_prompts import RolePrompt
-from made.role_playing.entity.role_type import RoleType
 
 
 @PhaseRegistry.register()
-class CodeCompletePhaseRepositoryImpl(BasePhaseRepositoryImpl):
+class ExamplePhase(BasePhaseRepositoryImpl):
     def __init__(
         self,
         model_config: ModelConfig,
-        phase_prompt: str = PhasePrompt.code_complete,
-        assistant_role_name: str = RoleType.PROGRAMMER,
-        assistant_role_prompt: str = RolePrompt.PROGRAMMER,
-        user_role_name: str = RoleType.CTO,
-        user_role_prompt: str = RolePrompt.CTO,
-        chat_turn_limit: int = PhaseChatTurnLimit.code_complete,
+        phase_prompt: str = "discuss about multi llm agents",
+        assistant_role_name: str = "assistant",
+        assistant_role_prompt: str = "You are a helpful {assistant_role}",
+        user_role_name: str = "user",
+        user_role_prompt: str = "You are discussing about {task} with {assistant_role}",
+        chat_turn_limit: int = 5,
     ):
         super().__init__(
             model_config=model_config,

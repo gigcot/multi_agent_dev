@@ -4,6 +4,7 @@ from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryI
 from made.engine.entity.ollama_config import OllamaConfig
 from made.phase.service.phase_service_impl import PhaseServiceImpl
 
+
 if __name__ == "__main__":
     phase_service = PhaseServiceImpl(
         model_config=OllamaConfig(
@@ -17,16 +18,17 @@ if __name__ == "__main__":
     )
 
     phases = [
-        phase_service.get_demand_analysis_phase(),
-        phase_service.get_language_choose_phase(),
-        phase_service.get_coding_phase(),
-        phase_service.get_code_complete_phase(),
-        phase_service.get_code_review_comment_phase(),
-        phase_service.get_code_review_modification_phase(),
-        phase_service.get_test_error_summary_phase(),
-        phase_service.get_test_modification_phase(),
-        phase_service.get_manual_phase(),
+        "DemandAnalysis",
+        # "LanguageChoose",
+        # "Coding",
+        # "CodeComplete",
+        # "CodeReviewComment",
+        # "CodeReviewModification",
+        # "TestErrorSummary",
+        # "TestModification",
+        # "Manual",
     ]
+    phases = [phase_service.get_phase(phase) for phase in phases]
 
     for phase in phases:
         phase.execute(env=env)

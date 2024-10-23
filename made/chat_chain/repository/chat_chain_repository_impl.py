@@ -11,7 +11,6 @@ class ChatChainRepositoryImpl(ChatChainRepository):
         env: ChatEnvRepositoryImpl,
         phase: BasePhaseRepositoryImpl,
     ):
-        # TODO automate chat_turn_limit(not by argument)
         phase.execute(env)
 
     def execute_chain(
