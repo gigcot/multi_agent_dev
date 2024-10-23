@@ -1,10 +1,10 @@
 from openai.types.chat.chat_completion import ChatCompletion
 
-from engine import ModelConfig
-from engine.repository.ollama.ollama_engine_repository_impl import (
+from made.engine import ModelConfig
+from made.engine.repository.ollama.ollama_engine_repository_impl import (
     OllamaEngineRepositoryImpl,
 )
-from engine.service.base_engine_service import BaseEngineService
+from made.engine.service.base_engine_service import BaseEngineService
 
 
 class OllamaEngineServiceImpl(BaseEngineService):

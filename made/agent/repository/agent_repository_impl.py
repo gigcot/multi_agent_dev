@@ -1,11 +1,11 @@
 from typing import Any, Dict, List, Optional, Union
 
-from agent.repository.agent_repository import AgentRepository
-from engine import ModelConfig
-from engine.service.ollama.ollama_engine_service_impl import OllamaEngineServiceImpl
-from messages import MessageType
-from messages.entity.chat_message.base_chat_message import BaseChatMessage
-from messages.entity.system_message.base_system_message import BaseSystemMessage
+from made.agent.repository.agent_repository import AgentRepository
+from made.engine import ModelConfig
+from made.engine.service.ollama.ollama_engine_service_impl import OllamaEngineServiceImpl
+from made.messages import MessageType
+from made.messages.entity.chat_message.base_chat_message import BaseChatMessage
+from made.messages.entity.system_message.base_system_message import BaseSystemMessage
 
 
 class AgentRepositoryImpl(AgentRepository):

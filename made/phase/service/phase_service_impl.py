@@ -1,34 +1,34 @@
-from engine import ModelConfig
-from phase.entity.phase_chat_turn_limit import PhaseChatTurnLimit
-from phase.entity.phase_prompts import PhasePrompt
-from phase.repository.code_complete.code_complete_phase_repository_impl import (
+from made.engine import ModelConfig
+from made.phase.entity.phase_chat_turn_limit import PhaseChatTurnLimit
+from made.phase.entity.phase_prompts import PhasePrompt
+from made.phase.repository.code_complete.code_complete_phase_repository_impl import (
     CodeCompletePhaseRepositoryImpl,
 )
-from phase.repository.code_review_comment.code_review_comment_phase_repository_impl import (
+from made.phase.repository.code_review_comment.code_review_comment_phase_repository_impl import (
     CodeReviewCommentPhaseRepositoryImpl,
 )
-from phase.repository.code_review_modification.code_review_modification_phase_repository_impl import (
+from made.phase.repository.code_review_modification.code_review_modification_phase_repository_impl import (
     CodeReviewModificationPhaseRepositoryImpl,
 )
-from phase.repository.coding.code_phase_repository_impl import CodingPhaseRepositoryImpl
-from phase.repository.demand_analysis.demand_analysis_phase_repository_impl import (
+from made.phase.repository.coding.code_phase_repository_impl import CodingPhaseRepositoryImpl
+from made.phase.repository.demand_analysis.demand_analysis_phase_repository_impl import (
     DemandAnalysisPhaseResitoryImpl,
 )
-from phase.repository.language_choose.language_choose_phase_repository_impl import (
+from made.phase.repository.language_choose.language_choose_phase_repository_impl import (
     LanguageChoosePhaseRepositoryImpl,
 )
-from phase.repository.manual.manual_phase_repository_impl import (
+from made.phase.repository.manual.manual_phase_repository_impl import (
     ManualPhaseRepositoryImpl,
 )
-from phase.repository.test_error_summary.test_error_summary_phase_repository_impl import (
+from made.phase.repository.test_error_summary.test_error_summary_phase_repository_impl import (
     TestErrorSummaryPhaseRepositoryImpl,
 )
-from phase.repository.test_modification.test_modification_phase_repository_impl import (
+from made.phase.repository.test_modification.test_modification_phase_repository_impl import (
     TestModificationPhaseRepositoryImpl,
 )
-from phase.service.phase_service import PhaseService
-from role_playing.entity.role_prompts import RolePrompt
-from role_playing.entity.role_type import RoleType
+from made.phase.service.phase_service import PhaseService
+from made.role_playing.entity.role_prompts import RolePrompt
+from made.role_playing.entity.role_type import RoleType
 
 
 class PhaseServiceImpl(PhaseService):

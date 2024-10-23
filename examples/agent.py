@@ -1,8 +1,8 @@
-from agent.service.agent_service_impl import AgentServiceImpl
-from engine import ModelConfig
-from engine.entity.config.ollama.ollama_config import OllamaConfig
-from messages.entity.chat_message.user_message import UserChatMessage
-from messages.entity.system_message.base_system_message import BaseSystemMessage
+from made.agent.service.agent_service_impl import AgentServiceImpl
+from made.engine import ModelConfig
+from made.engine.entity.ollama_config import OllamaConfig
+from made.messages.entity.chat_message.user_message import UserChatMessage
+from made.messages.entity.system_message.base_system_message import BaseSystemMessage
 
 
 class Chat:

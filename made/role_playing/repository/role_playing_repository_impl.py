@@ -1,15 +1,15 @@
 import copy
 from typing import Dict, List, Optional, Sequence
 
-from agent.service.agent_service_impl import AgentServiceImpl
-from engine import ModelConfig
-from messages.entity.chat_message.base_chat_message import BaseChatMessage
-from messages.entity.chat_message.user_message import UserChatMessage
-from messages.entity.system_message.assistant_system_message import (
+from made.agent.service.agent_service_impl import AgentServiceImpl
+from made.engine import ModelConfig
+from made.messages.entity.chat_message.base_chat_message import BaseChatMessage
+from made.messages.entity.chat_message.user_message import UserChatMessage
+from made.messages.entity.system_message.assistant_system_message import (
     AssistantSystemMessage,
 )
-from messages.entity.system_message.user_system_message import UserSystemMessage
-from role_playing.repository.role_playing_repository import RolePlayingRepository
+from made.messages.entity.system_message.user_system_message import UserSystemMessage
+from made.role_playing.repository.role_playing_repository import RolePlayingRepository
 
 
 class RolePlayingRepositoryImpl(RolePlayingRepository):

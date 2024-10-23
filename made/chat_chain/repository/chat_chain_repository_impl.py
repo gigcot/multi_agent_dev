@@ -1,8 +1,8 @@
 from typing import List
 
-from chat_chain.repository.chat_chain_repository import ChatChainRepository
-from chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
-from phase.repository.base_phase_repository_impl import BasePhaseRepositoryImpl
+from made.chat_chain.repository.chat_chain_repository import ChatChainRepository
+from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
+from made.phase.repository.base_phase_repository_impl import BasePhaseRepositoryImpl
 
 
 class ChatChainRepositoryImpl(ChatChainRepository):

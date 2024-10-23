@@ -1,10 +1,10 @@
-from chat_chain.repository.chat_chain_repository_impl import ChatChainRepositoryImpl
-from chat_chain.service.chat_chain_service import ChatChainService
-from chat_env.entity.env_config import EnvConfig
-from chat_env.entity.env_states import EnvStates
-from chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
-from engine.entity.config.ollama.ollama_config import OllamaConfig
-from phase.service.phase_service_impl import PhaseServiceImpl
+from made.chat_chain.repository.chat_chain_repository_impl import ChatChainRepositoryImpl
+from made.chat_chain.service.chat_chain_service import ChatChainService
+from made.chat_env.entity.env_config import EnvConfig
+from made.chat_env.entity.env_states import EnvStates
+from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
+from made.engine.entity.ollama_config import OllamaConfig
+from made.phase.service.phase_service_impl import PhaseServiceImpl
 
 
 class ChatChainServiceImpl(ChatChainService):

@@ -1,4 +1,4 @@
-from chat_chain.service.chat_chain_service_impl import ChatChainServiceImpl
+from made.chat_chain.service.chat_chain_service_impl import ChatChainServiceImpl
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
-from chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
-from engine import ModelConfig
-from phase.repository.base_phase_repository_impl import BasePhaseRepositoryImpl
+from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
+from made.engine import ModelConfig
+from made.phase.repository.base_phase_repository_impl import BasePhaseRepositoryImpl
 
 
 class CodeCompletePhaseRepositoryImpl(BasePhaseRepositoryImpl):

@@ -1,6 +1,6 @@
-from chat_env.entity.env_config import EnvConfig
-from chat_env.entity.env_states import EnvStates
-from chat_env.repository.chat_env_repository import ChatEnvRepository
+from made.chat_env.entity.env_config import EnvConfig
+from made.chat_env.entity.env_states import EnvStates
+from made.chat_env.repository.chat_env_repository import ChatEnvRepository
 
 
 class ChatEnvRepositoryImpl(ChatEnvRepository):

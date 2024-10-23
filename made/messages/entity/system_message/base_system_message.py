@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Dict, Optional
 
-from messages.entity.base_message import BaseMessage
+from made.messages.entity.base_message import BaseMessage
 
 
 @dataclass

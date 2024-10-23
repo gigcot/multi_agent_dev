@@ -1,5 +1,5 @@
-from engine.entity.config.ollama.ollama_config import OllamaConfig
-from role_playing.service.role_playing_service_impl import RolePlayingServiceImpl
+from made.engine.entity.ollama_config import OllamaConfig
+from made.role_playing.service.role_playing_service_impl import RolePlayingServiceImpl
 
 if __name__ == "__main__":
     model_config = OllamaConfig(

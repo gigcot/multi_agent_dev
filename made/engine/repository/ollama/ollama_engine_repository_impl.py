@@ -1,7 +1,7 @@
 from openai import OpenAI
 
-from engine import ModelConfig
-from engine.repository.base_engine_repository import BaseEngineRepository
+from made.engine import ModelConfig
+from made.engine.repository.base_engine_repository import BaseEngineRepository
 
 
 class OllamaEngineRepositoryImpl(BaseEngineRepository):

@@ -1,10 +1,10 @@
-from agent.service.agent_service_impl import AgentServiceImpl
-from chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
-from messages.entity.chat_message.user_message import UserChatMessage
-from engine import ModelConfig
-from phase.entity.phase_states import PhaseStates
-from phase.repository.base_phase_repository import BasePhaseRepository
-from role_playing.service.role_playing_service_impl import RolePlayingServiceImpl
+from made.agent.service.agent_service_impl import AgentServiceImpl
+from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
+from made.messages.entity.chat_message.user_message import UserChatMessage
+from made.engine import ModelConfig
+from made.phase.entity.phase_states import PhaseStates
+from made.phase.repository.base_phase_repository import BasePhaseRepository
+from made.role_playing.service.role_playing_service_impl import RolePlayingServiceImpl
 
 
 class BasePhaseRepositoryImpl(BasePhaseRepository):

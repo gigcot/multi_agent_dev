@@ -1,12 +1,12 @@
 from typing import Dict, List, Optional, Tuple
 
-from agent.entity.agent_response import ChatAgentResponse
-from engine import ModelConfig
-from messages.entity.chat_message.base_chat_message import BaseChatMessage
-from role_playing.repository.role_playing_repository_impl import (
+from made.agent.entity.agent_response import ChatAgentResponse
+from made.engine import ModelConfig
+from made.messages.entity.chat_message.base_chat_message import BaseChatMessage
+from made.role_playing.repository.role_playing_repository_impl import (
     RolePlayingRepositoryImpl,
 )
-from role_playing.service.role_playing_service import RolePlayingService
+from made.role_playing.service.role_playing_service import RolePlayingService
 
 
 class RolePlayingServiceImpl(RolePlayingService):

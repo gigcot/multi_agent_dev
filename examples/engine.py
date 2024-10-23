@@ -2,8 +2,8 @@ import logging
 import time
 from concurrent import futures
 
-from engine.entity.config.ollama.ollama_config import OllamaConfig
-from engine.service.ollama.ollama_engine_service_impl import OllamaEngineServiceImpl
+from made.engine.entity.ollama_config import OllamaConfig
+from made.engine.service.ollama.ollama_engine_service_impl import OllamaEngineServiceImpl
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(message)s")
 

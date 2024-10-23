@@ -2,12 +2,12 @@ from typing import Any, Dict, List, Optional
 
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-from agent.entity.agent_response import ChatAgentResponse
-from agent.repository.agent_repository_impl import AgentRepositoryImpl
-from agent.service.agent_service import Agentservice
-from engine import ModelConfig
-from messages.entity.chat_message.base_chat_message import BaseChatMessage
-from messages.entity.system_message.base_system_message import BaseSystemMessage
+from made.agent.entity.agent_response import ChatAgentResponse
+from made.agent.repository.agent_repository_impl import AgentRepositoryImpl
+from made.agent.service.agent_service import Agentservice
+from made.engine import ModelConfig
+from made.messages.entity.chat_message.base_chat_message import BaseChatMessage
+from made.messages.entity.system_message.base_system_message import BaseSystemMessage
 
 
 class AgentServiceImpl(Agentservice):
