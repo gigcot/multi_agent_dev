@@ -1,5 +1,26 @@
 # MADE(Multi-Agent Development)
 
+## Requirements
+
+- Python 3.9+
+- Ollama installed and running
+
+## installation
+
+### From PyPI
+
+```bash
+pip install llm_made
+```
+
+### From Source
+
+```bash
+git clone https://github.com/onebottlekick/MADE
+cd MADE
+pip install -e .
+```
+
 ## Components
 
 ### Engine
@@ -129,6 +150,11 @@ The `PhaseChatTurnLimit` class is used to define the maximum number of chat turn
 #### Custom Phase
 
 ```python
+from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
+from made.engine import ModelConfig
+from made.phase import PhaseRegistry
+from made.phase.repository.base_phase_repository_impl import BasePhaseRepositoryImpl
+
 @PhaseRegistry.register()
 class ExamplePhase(BasePhaseRepositoryImpl):
     def __init__(
