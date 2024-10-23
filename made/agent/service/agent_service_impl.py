@@ -37,9 +37,6 @@ class AgentServiceImpl(Agentservice):
             ]
         messages = [message.to_message() for message in messages]
 
-        output_messages: Optional[List[BaseChatMessage]]
-        info: Dict[str, Any]
-
         try:
             response = self.agent_repository.engine.run(
                 messages=messages, ollama_config=self.agent_repository.model_config
