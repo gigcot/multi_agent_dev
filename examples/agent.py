@@ -36,6 +36,8 @@ if __name__ == "__main__":
         content=f"You are a expert programmer. Your job is writting backlogs for development. \
 You should only answer to the questions that asks about making backlogs",
     )
-    model_config = OllamaConfig()
+    model_config = OllamaConfig(
+        base_url="https://si-follow.loca.lt/v1/", model="llama3.2"
+    )
     chat = Chat(model_config)
     chat.run()
