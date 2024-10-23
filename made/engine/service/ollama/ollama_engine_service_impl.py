@@ -33,6 +33,11 @@ class OllamaEngineServiceImpl(BaseEngineService):
             model=ollama_config.model,
             messages=messages,
             max_tokens=ollama_config.max_tokens,
+            temperature=ollama_config.temperature,
+            top_p=ollama_config.top_p,
+            stream=ollama_config.stream,
+            frequency_penalty=ollama_config.frequency_penalty,
+            presence_penalty=ollama_config.presence_penalty,
         )
 
         return response
