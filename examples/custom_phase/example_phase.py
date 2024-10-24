@@ -15,6 +15,9 @@ class ExamplePhase(BasePhaseRepositoryImpl):
         user_role_name: str = "user",
         user_role_prompt: str = "You are discussing about {task} with {assistant_role}",
         chat_turn_limit: int = 5,
+        temperature=0.5,
+        top_p=0.5,
+        **kwargs,
     ):
         super().__init__(
             model_config=model_config,
@@ -24,6 +27,9 @@ class ExamplePhase(BasePhaseRepositoryImpl):
             user_role_name=user_role_name,
             user_role_prompt=user_role_prompt,
             chat_turn_limit=chat_turn_limit,
+            temperature=temperature,
+            top_p=top_p,
+            **kwargs,
         )
 
     def update_phase_states(self, env: ChatEnvRepositoryImpl):

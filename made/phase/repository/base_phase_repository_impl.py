@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from made.agent.service.agent_service_impl import AgentServiceImpl
 from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
 from made.messages.entity.chat_message.user_message import UserChatMessage
@@ -17,8 +19,18 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
         user_role_name: str,
         user_role_prompt: str,
         chat_turn_limit: int = 10,
+        **kwargs
     ):
+        model_config = deepcopy(model_config)
         self.model_config = model_config
+        if temperature := kwargs.get("temperature"):
+            if temperature is not None:
+                self.model_config.temperature = temperature
+        if top_p := kwargs.get("top_p"):
+            if top_p is not None:
+                self.model_config.top_p = top_p
+        print("phase: ", self.__class__.__name__)
+        print("model config: ", self.model_config)
         self.phase_prompt = phase_prompt
         self.assistant_role_name = assistant_role_name
         self.assistant_role_prompt = assistant_role_prompt

@@ -9,7 +9,7 @@ class OllamaConfig:
     api_key: str = "ollama"
     max_tokens: int = 40000
     stream: bool = False
-    temperature: float = 0.2
+    temperature: float = 1.0
     top_p: float = 1.0
     frequency_penalty: float = 0.0
     presence_penalty: float = 0.0
