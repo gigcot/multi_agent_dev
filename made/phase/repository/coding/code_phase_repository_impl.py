@@ -48,5 +48,5 @@ class CodingPhaseRepositoryImpl(BasePhaseRepositoryImpl):
         contents = FileToolRepositoryImpl.abstract_contents_from_text(self.seminar_conclusion)
         for k, v in contents.items():
             env.states.codes[k] = v
-            FileToolRepositoryImpl.write_file(os.path.join("project_zoo", env.config.directory, k), v)
+            FileToolRepositoryImpl.write_file(os.path.join(env.config.directory, k), v)
         return env

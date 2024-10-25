@@ -34,7 +34,8 @@ class SecondPhase(BasePhaseRepositoryImpl):
         )
 
     def update_phase_states(self, env):
-        pass
+        self.states.state1 = env.states.state1
 
     def update_env_states(self, env):
+        env.states.state2 = self.seminar_conclusion
         return env

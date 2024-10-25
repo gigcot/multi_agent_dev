@@ -56,7 +56,7 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
     ) -> str:
         if placeholders is None:
             placeholders = {}
-        if isinstance(placeholders, PhaseStates):
+        if not isinstance(placeholders, dict):
             placeholders = placeholders.__dict__
         assert 1 <= chat_turn_limit <= 100
 

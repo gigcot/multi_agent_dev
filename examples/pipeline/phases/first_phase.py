@@ -37,4 +37,5 @@ class FirstPhase(BasePhaseRepositoryImpl):
         pass
 
     def update_env_states(self, env):
+        env.states.state1 = self.seminar_conclusion
         return env
