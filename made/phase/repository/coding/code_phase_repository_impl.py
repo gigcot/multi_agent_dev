@@ -1,3 +1,5 @@
+import os
+
 from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
 from made.engine import ModelConfig
 from made.phase import PhaseRegistry
@@ -7,6 +9,7 @@ from made.phase.entity.phase_prompts import PhasePrompt
 from made.phase.repository.base_phase_repository_impl import BasePhaseRepositoryImpl
 from made.role_playing.entity.role_prompts import RolePrompt
 from made.role_playing.entity.role_type import RoleType
+from made.tools.file.repository.file_tool_repository_impl import FileToolRepositoryImpl
 
 
 @PhaseRegistry.register()
@@ -37,15 +40,13 @@ class CodingPhaseRepositoryImpl(BasePhaseRepositoryImpl):
         )
 
     def update_phase_states(self, env: ChatEnvRepositoryImpl):
-        # TODO implement
-        self.states.__dict__ = env.states.__dict__
         self.states.task = env.config.task_prompt
-        self.states.description = env.states.task_description
-        self.states.gui = (
-            "need gui design." if env.config.gui_design else "no need gui design."
-        )
-        pass
+        self.states.modality = env.states.modality
+        self.states.language = env.states.language
 
     def update_env_states(self, env: ChatEnvRepositoryImpl) -> ChatEnvRepositoryImpl:
-        env.states.codes = self.seminar_conclusion
+        contents = FileToolRepositoryImpl.abstract_contents_from_text(self.seminar_conclusion)
+        for k, v in contents.items():
+            env.states.codes[k] = v
+            FileToolRepositoryImpl.write_file(os.path.join("project_zoo", env.config.directory, k), v)
         return env

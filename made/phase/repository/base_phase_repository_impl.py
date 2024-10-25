@@ -29,8 +29,6 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
         if top_p := kwargs.get("top_p"):
             if top_p is not None:
                 self.model_config.top_p = top_p
-        print("phase: ", self.__class__.__name__)
-        print("model config: ", self.model_config)
         self.phase_prompt = phase_prompt
         self.assistant_role_name = assistant_role_name
         self.assistant_role_prompt = assistant_role_prompt
@@ -129,7 +127,7 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
             )
             conclude_prompt = (
                 f"Below are conversation between {user_role_name} and {assistant_role_name}.:\nConversations: {conversations}"
-                + f'You have to conclude conversations and answer for "{todo}".'
+                + f'\nYou have to conclude conversations and answer for "{todo}".\n If conversation contains code, don\'t modify the code.'
             )
             message = UserChatMessage("User", content=conclude_prompt)
             agent = AgentServiceImpl(

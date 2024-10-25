@@ -50,6 +50,6 @@ class ChatChainServiceImpl(ChatChainService):
         return phases
 
     def run(self):
-        self.chat_chain_repository.preprocessing()
+        self.chat_chain_repository.preprocessing(self.env)
         self.chat_chain_repository.execute_chain(env=self.env, phases=self.phases)
         self.chat_chain_repository.postprocessing()

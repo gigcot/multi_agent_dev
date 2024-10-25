@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Dict
+from typing import Dict, List
 
 
 @dataclass
@@ -8,9 +8,9 @@ class EnvStates:
     modality: str = ""
     ideas: str = ""
     language: str = ""
-    review_comments: str = ""
-    error_summary: str = ""
-    test_reports: str = ""
+    review_comments: List[str] = field(default_factory=list)
+    error_summary: List[str] = field(default_factory=list)
+    test_reports: List[str] = field(default_factory=list)
     codes: Dict[str, str] = field(default_factory=dict)
-    manual: str = ""
-    requirements: str = ""
+    manual: Dict[str, str] = field(default_factory=dict)
+    requirements: Dict[str, str] = field(default_factory=dict)

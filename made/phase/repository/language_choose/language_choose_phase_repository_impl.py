@@ -38,9 +38,8 @@ class LanguageChoosePhaseRepositoryImpl(BasePhaseRepositoryImpl):
 
     def update_phase_states(self, env: ChatEnvRepositoryImpl):
         # TODO implement
-        self.states.__dict__ = env.states.__dict__
         self.states.task = env.config.task_prompt
-        self.states.description = env.states.task_description
+        self.states.modality = env.states.modality
 
     def update_env_states(self, env: ChatEnvRepositoryImpl) -> ChatEnvRepositoryImpl:
         env.states.language = self.seminar_conclusion

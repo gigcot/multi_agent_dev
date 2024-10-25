@@ -4,7 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class EnvConfig:
     task_prompt: str
-    directory: str = "project_zoo"
+    directory: str
     background_prompt: str = (
         "SI-follow is a software company powered by LLM multi-agent"
     )

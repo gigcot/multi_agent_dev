@@ -37,10 +37,7 @@ class DemandAnalysisPhaseRepositoryImpl(BasePhaseRepositoryImpl):
         )
 
     def update_phase_states(self, env: ChatEnvRepositoryImpl):
-        # TODO implement
-        self.states.__dict__ = env.states.__dict__
-        self.states.task = env.config.task_prompt
-        self.states.description = env.states.task_description
+        pass
 
     def update_env_states(self, env: ChatEnvRepositoryImpl) -> ChatEnvRepositoryImpl:
         env.states.modality = self.seminar_conclusion
