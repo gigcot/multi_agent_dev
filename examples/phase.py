@@ -13,7 +13,7 @@ if __name__ == "__main__":
     )
 
     env = ChatEnvRepositoryImpl(
-        env_config=EnvConfig(task_prompt="develop a simple calculator in python"),
+        env_config=EnvConfig(task_prompt="develop a simple calculator in python", directory="test"),
         env_states=EnvStates(),
     )
 

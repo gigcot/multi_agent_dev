@@ -18,6 +18,10 @@ class Chat:
 
             if prompt.lower() == "exit":
                 break
+            
+            if prompt.lower() == "reset":
+                self.agent.agent_repository.reset()
+                continue
 
             user_message = UserChatMessage(
                 role_name="onebottlekick", content=f"{prompt}"
