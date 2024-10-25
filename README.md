@@ -251,8 +251,27 @@ class EnvStates:
 
 The `EnvStates` class is used to store the state of the environment for the chat chain. The state includes the task description, modality, ideas, language, review comments, error summary, test reports, codes, manual, and requirements.
 
+```python
+chain = ChatChainServiceImpl(
+    task_prompt="Discuss about AI technologies.",
+    directory="project_zoo/test_dir",
+    base_url="https://si-follow.loca.lt/v1/",
+    model="llama3.2",
+    phases=[
+        "First",
+        "Second",
+    ],
+    env_states=ExampleEnvStates(),
+    save_chain=True,
+    git_management=True
+)
+chain.run()
+```
+
+You can create an instance of the `ChatChainServiceImpl` class to run the chat chain. You can configure the task prompt, directory, base URL, model, phases, environment states, save chain flag, and Git management flag. Loading saved chain is automatically handled. Default name of the saved chain is `chain`. You can change it by passing `save_name` parameter.
+
 ## Playground
 
-Everything is in examples folder. You can modify all the configs explained above and run the examples to see the results.
+Everything is in examples folder. You can modify all the configs explained above and run the examples to see the results. The full pipeline is implemented in the `examples/pipeline`
 
 ## this repository was modified from [ChatDev:https://github.com/OpenBMB/ChatDev]
