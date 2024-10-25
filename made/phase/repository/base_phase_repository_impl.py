@@ -1,4 +1,5 @@
 from copy import deepcopy
+from typing import Dict, Union, Optional
 
 from made.agent.service.agent_service_impl import AgentServiceImpl
 from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
@@ -37,7 +38,9 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
         self.chat_turn_limit = chat_turn_limit
 
         self.seminar_conclusion = None
-        self.states: PhaseStates = PhaseStates()
+        
+        states = kwargs.get("states")
+        self.states: Optional[Union[PhaseStates, Dict]] = states if states else PhaseStates()
 
     def chatting(
         self,

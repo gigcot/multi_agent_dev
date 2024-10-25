@@ -31,6 +31,7 @@ class ChatChainServiceImpl(ChatChainService):
         model: str = "llama3.2",
         api_key: str = "ollama",
         max_tokens: int = 40000,
+        **kwargs,
     ):
         self.model_config = OllamaConfig(
             base_url=base_url, model=model, api_key=api_key, max_tokens=max_tokens
@@ -39,9 +40,13 @@ class ChatChainServiceImpl(ChatChainService):
         self.phase_service = PhaseServiceImpl(
             model_config=self.model_config,
         )
+        
+        git_management = True if kwargs.get("git_management") else False
+        env_config = EnvConfig(task_prompt=task_prompt, directory=directory, git_management=git_management)
 
-        env_config = EnvConfig(task_prompt=task_prompt, directory=directory)
-        env_states = EnvStates()
+        env_states = kwargs.get("env_states")
+        env_states = env_states if env_states else EnvStates()
+
         self.env = ChatEnvRepositoryImpl(env_config=env_config, env_states=env_states)
         self.phases = self.get_phases(phases)
 
