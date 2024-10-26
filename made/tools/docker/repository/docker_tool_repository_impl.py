@@ -16,7 +16,8 @@ class DockerToolRepositoryImpl(DockerToolRepository):
 
     @staticmethod
     def pull_image(client: DockerClient, image_name: str = "python:3.9-slim"):
-        client.images.pull(tag=image_name)
+        repository, tag = image_name.split(":")
+        client.images.pull(repository, tag)
 
     @staticmethod
     def start_container(container: Container):
@@ -41,7 +42,11 @@ class DockerToolRepositoryImpl(DockerToolRepository):
             if container.status != "running":
                 DockerToolRepositoryImpl.start_container(container)
         else:
-            image = DockerToolRepositoryImpl.pull_image(client, image_name)
+            images = [image.attrs["RepoTags"] for image in client.images.list(all=True)]
+            if image_name not in images:
+                DockerToolRepositoryImpl.pull_image(client, image_name)
+
+            image = client.images.get(image_name)
             container = client.containers.run(
                 image=image,
                 name=container_name,
