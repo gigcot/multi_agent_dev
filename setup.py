@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="llm_made",
-    version="0.0.5",
+    version="0.0.6",
     description="multi-agent development",
     author="onebottlekick",
     author_email="gksqudcks97@gmail.com",
