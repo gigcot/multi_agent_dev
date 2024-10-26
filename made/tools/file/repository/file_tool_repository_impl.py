@@ -24,7 +24,7 @@ class FileToolRepositoryImpl(FileToolRepository):
 
     @staticmethod
     def update_file(file_path: str, content: str) -> None:
-        with open(file_path, "w") as f:
+        with open(file_path, "a") as f:
             f.write(content)
 
     @staticmethod
