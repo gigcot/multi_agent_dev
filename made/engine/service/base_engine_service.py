@@ -3,5 +3,9 @@ from abc import ABC, abstractmethod
 
 class BaseEngineService(ABC):
     @abstractmethod
-    def run(self, messages, ollama_config):
+    def chat_completion(self, messages, ollama_config):
+        pass
+    
+    @abstractmethod
+    def embedding(self, messages, ollama_config):
         pass

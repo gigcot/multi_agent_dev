@@ -1,4 +1,5 @@
 from openai.types.chat.chat_completion import ChatCompletion
+from openai.types.create_embedding_response import CreateEmbeddingResponse
 
 from made.engine import ModelConfig
 from made.engine.repository.ollama.ollama_engine_repository_impl import (
@@ -26,7 +27,7 @@ class OllamaEngineServiceImpl(BaseEngineService):
 
         return cls.__instance
 
-    def run(self, messages, ollama_config: ModelConfig) -> ChatCompletion:
+    def chat_completion(self, messages, ollama_config: ModelConfig) -> ChatCompletion:
         engine = self.__ollama_engine_repository.get_engine(ollama_config)
 
         response = engine.chat.completions.create(
@@ -40,4 +41,12 @@ class OllamaEngineServiceImpl(BaseEngineService):
             presence_penalty=ollama_config.presence_penalty,
         )
 
+        return response
+
+    def embedding(
+        self, text: str, ollama_config: ModelConfig
+    ) -> CreateEmbeddingResponse:
+        engine = self.__ollama_engine_repository.get_engine(ollama_config)
+
+        response = engine.embeddings.create(input=text, model=ollama_config.model)
         return response

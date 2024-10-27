@@ -38,7 +38,7 @@ class AgentServiceImpl(Agentservice):
         messages = [message.to_message() for message in messages]
 
         try:
-            response = self.agent_repository.engine.run(
+            response = self.agent_repository.engine.chat_completion(
                 messages=messages, ollama_config=self.agent_repository.model_config
             )
             output_messages = [
