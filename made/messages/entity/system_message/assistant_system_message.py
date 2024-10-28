@@ -6,7 +6,7 @@ from made.messages.entity.system_message.base_system_message import BaseSystemMe
 
 @dataclass
 class AssistantSystemMessage(BaseSystemMessage):
-    role_name: str
+    role_name: str = "assistant"
     meta_dict: Optional[Dict[str, str]] = None
     role: str = "system"
     content: str = ""

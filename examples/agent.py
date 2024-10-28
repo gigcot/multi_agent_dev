@@ -2,7 +2,9 @@ from made.agent.service.agent_service_impl import AgentServiceImpl
 from made.engine import ModelConfig
 from made.engine.entity.ollama_config import OllamaConfig
 from made.messages.entity.chat_message.user_message import UserChatMessage
-from made.messages.entity.system_message.base_system_message import BaseSystemMessage
+from made.messages.entity.system_message.assistant_system_message import (
+    AssistantSystemMessage,
+)
 
 
 class Chat:
@@ -18,14 +20,12 @@ class Chat:
 
             if prompt.lower() == "exit":
                 break
-            
+
             if prompt.lower() == "reset":
                 self.agent.agent_repository.reset()
                 continue
 
-            user_message = UserChatMessage(
-                role_name="onebottlekick", content=f"{prompt}"
-            )
+            user_message = UserChatMessage(content=f"{prompt}")
 
             res = self.agent.step(user_message)
 
@@ -35,8 +35,7 @@ class Chat:
 
 
 if __name__ == "__main__":
-    system_message = BaseSystemMessage(
-        role_name="Han",
+    system_message = AssistantSystemMessage(
         content=f"You are a expert programmer. Your job is writting backlogs for development. \
 You should only answer to the questions that asks about making backlogs",
     )
