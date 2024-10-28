@@ -20,6 +20,7 @@ class DefaultManualPhaseRepositoryImpl(BasePhaseRepositoryImpl):
         user_role_name: str = RoleType.CEO,
         user_role_prompt: str = RolePrompt.CEO,
         chat_turn_limit: int = PhaseChatTurnLimit.manual,
+        conversation_rag: bool = True,
         **kwargs,
     ):
         phase_engine_config = PhaseEngineConfig.manual
@@ -31,6 +32,7 @@ class DefaultManualPhaseRepositoryImpl(BasePhaseRepositoryImpl):
             user_role_name=user_role_name,
             user_role_prompt=user_role_prompt,
             chat_turn_limit=chat_turn_limit,
+            conversation_rag=conversation_rag,
             temperature=phase_engine_config.temperature,
             top_p=phase_engine_config.top_p,
             **kwargs,

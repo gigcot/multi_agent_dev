@@ -20,6 +20,7 @@ class DefaultDemandAnalysisPhaseRepositoryImpl(BasePhaseRepositoryImpl):
         user_role_name: str = RoleType.CEO,
         user_role_prompt: str = RolePrompt.CEO,
         chat_turn_limit: int = PhaseChatTurnLimit.demand_analysis,
+        conversation_rag: bool = True,
         **kwargs,
     ):
         phaes_engine_config = PhaseEngineConfig.demand_analysis
@@ -31,6 +32,7 @@ class DefaultDemandAnalysisPhaseRepositoryImpl(BasePhaseRepositoryImpl):
             user_role_name=user_role_name,
             user_role_prompt=user_role_prompt,
             chat_turn_limit=chat_turn_limit,
+            conversation_rag=conversation_rag,
             temperature=phaes_engine_config.temperature,
             top_p=phaes_engine_config.top_p,
             **kwargs,

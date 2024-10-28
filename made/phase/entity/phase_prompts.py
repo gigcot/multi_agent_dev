@@ -9,7 +9,7 @@ As the {assistant_role}, to satisfy the new user's demand and the product should
 first, we should discuss to decide which product modality do we want the product to be. \
 Note that we MUST ONLY discuss the product modality and finish this discuss in 3 turns. \
 Once we all have expressed our opinion(s) and agree with the results of the discussion unanimously, \
-any of us must actively terminate the discussion by replying with only one line, \
+any of us MUST actively terminate the discussion by replying with only one line, \
 which starts with a single symbol "<INFO>", followed by our final product modality, for example "<INFO> Application".
 """
 
@@ -42,11 +42,19 @@ As the {assistant_role}, to satisfy the new user's demands, you should write one
 and make sure that every detail of the architecture is, in the end, implemented as code. {gui} \
 Think step by step and reason yourself to the right decisions to make sure we get it right. \
 You will first lay out the names of the core classes, functions, methods that will be necessary, as w l as a quick comment on their purpose. \
-Then you will output the content of each file including complete code. Each file must strictly follow  markdown code block format, \
+Then you will output the content of each file including complete code. Each file MUST strictly follow markdown code block format, \
 where the following tokens must be replaced such that FILENAME is the lowercase file name including the file extension, \
 LANGUAGE in the programming language, DOCSTRING is a string literal specified in source code \
-that is used to document a specific segment of code, and CODE is the original code:
+that is used to document a specific segment of code, and CODE is the original code. You MUST put in fomat below:
 FILENAME 
+```LANGUAGE 
+''' 
+DOCSTRING 
+''' 
+CODE 
+``` 
+
+FILENAME2
 ```LANGUAGE 
 ''' 
 DOCSTRING 

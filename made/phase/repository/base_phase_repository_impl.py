@@ -1,13 +1,16 @@
 from copy import deepcopy
+import os
 from typing import Dict, Union, Optional
 
 from made.agent.service.agent_service_impl import AgentServiceImpl
 from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryImpl
 from made.messages.entity.chat_message.user_message import UserChatMessage
+from made.messages.entity.system_message.assistant_system_message import AssistantSystemMessage
 from made.engine import ModelConfig
 from made.phase.entity.phase_states import PhaseStates
 from made.phase.repository.base_phase_repository import BasePhaseRepository
 from made.role_playing.service.role_playing_service_impl import RolePlayingServiceImpl
+from made.tools.rag.repository.rag_tool_repository_impl import RAGToolRepositoryImpl
 
 
 class BasePhaseRepositoryImpl(BasePhaseRepository):
@@ -20,7 +23,8 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
         user_role_name: str,
         user_role_prompt: str,
         chat_turn_limit: int = 10,
-        **kwargs
+        conversation_rag: bool = False,
+        **kwargs,
     ):
         model_config = deepcopy(model_config)
         self.model_config = model_config
@@ -36,11 +40,14 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
         self.user_role_name = user_role_name
         self.user_role_prompt = user_role_prompt
         self.chat_turn_limit = chat_turn_limit
+        self.conversation_rag = conversation_rag
 
         self.seminar_conclusion = None
-        
+
         states = kwargs.get("states")
-        self.states: Optional[Union[PhaseStates, Dict]] = states if states else PhaseStates()
+        self.states: Optional[Union[PhaseStates, Dict]] = (
+            states if states else PhaseStates()
+        )
 
     def chatting(
         self,
@@ -118,28 +125,30 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
                 input_user_message = user_response.message
             else:
                 break
-        
+
         # TODO seminar conclusion should be more clear
         if seminar_conclusion is None:
-            conversations = (
-                role_play_session.role_playing_repository.assistant_agent.agent_repository.stored_messages
-            )
-            todo = conversations[0].content
-            conversations = "".join(
-                [conversation.content for conversation in conversations[1:]]
-            )
-            conclude_prompt = (
-                f"Below are conversation between {user_role_name} and {assistant_role_name}.:\nConversations: {conversations}"
-                + f'\nYou have to conclude conversations and answer for "{todo}".\n If conversation contains code, don\'t modify the code.'
-            )
-            message = UserChatMessage("User", content=conclude_prompt)
-            agent = AgentServiceImpl(
-                role_play_session.role_playing_repository.user_system_messsge,
-                self.model_config,
-            )
-            seminar_conclusion = agent.step(message).message.content
-            if "<INFO>" not in seminar_conclusion:
-                seminar_conclusion = "<INFO>" + seminar_conclusion
+            if self.conversation_rag:
+                conversations = (
+                    role_play_session.role_playing_repository.assistant_agent.agent_repository.stored_messages
+                )
+                task = conversations[0].content
+                conversations = [conversation.content for conversation in conversations[1:]]
+                client = RAGToolRepositoryImpl.get_client(os.path.join(env.config.directory, "vectordb"))
+                collection = RAGToolRepositoryImpl.get_collection(client, "conversations")
+                RAGToolRepositoryImpl.ingest(collection, conversations, self.model_config)
+                search_result = RAGToolRepositoryImpl.search(task, collection, self.model_config, n_results=2)
+                rag_prompt = f"Query search result: {search_result}\n" + f"Using the result, do {task}."
+                message = UserChatMessage(content=task)
+                agent = AgentServiceImpl(
+                    system_message=AssistantSystemMessage(role_name=assistant_role_name, content=rag_prompt),
+                    model_config=self.model_config,
+                )
+                seminar_conclusion = agent.step(message).message.content
+                if "<INFO>" not in seminar_conclusion:
+                    seminar_conclusion = "<INFO>" + seminar_conclusion
+            else:
+                seminar_conclusion = "<INFO>" + assistant_response.message.content
 
         seminar_conclusion = seminar_conclusion.split("<INFO>")[-1]
         print()
