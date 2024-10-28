@@ -10,7 +10,7 @@ from made.role_playing.entity.role_type import RoleType
 
 
 @PhaseRegistry.register()
-class TestErrorSummaryPhaseRepositoryImpl(BasePhaseRepositoryImpl):
+class DefaultTestErrorSummaryPhaseRepositoryImpl(BasePhaseRepositoryImpl):
     def __init__(
         self,
         model_config: ModelConfig,

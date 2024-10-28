@@ -147,9 +147,21 @@ class BasePhaseRepositoryImpl(BasePhaseRepository):
         return seminar_conclusion
 
     def update_phase_states(self, env: ChatEnvRepositoryImpl):
+        """
+        Update the phase states from previous phases states(global env).
+
+        Args:
+            env (ChatEnvRepositoryImpl): The chat environment.
+        """
         raise NotImplementedError
 
     def update_env_states(self, env: ChatEnvRepositoryImpl):
+        """
+        Update the environment states based on the seminar conclusion.
+
+        Args:
+            env (ChatEnvRepositoryImpl): The chat environment.
+        """
         raise NotImplementedError
 
     def execute(

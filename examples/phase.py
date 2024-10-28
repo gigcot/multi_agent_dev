@@ -18,15 +18,15 @@ if __name__ == "__main__":
     )
 
     phases = [
-        "DemandAnalysis",
-        # "LanguageChoose",
-        # "Coding",
-        # "CodeComplete",
-        # "CodeReviewComment",
-        # "CodeReviewModification",
-        # "TestErrorSummary",
-        # "TestModification",
-        # "Manual",
+        "DefaultDemandAnalysis",
+        # "DefaultLanguageChoose",
+        # "DefaultCoding",
+        # "DefaultCodeComplete",
+        # "DefaultCodeReviewComment",
+        # "DefaultCodeReviewModification",
+        # "DefaultTestErrorSummary",
+        # "DefaultTestModification",
+        # "DefaultManual",
     ]
     phases = [phase_service.get_phase(phase) for phase in phases]
 

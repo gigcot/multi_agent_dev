@@ -10,7 +10,7 @@ from made.role_playing.entity.role_type import RoleType
 
 
 @PhaseRegistry.register()
-class CodeReviewCommentPhaseRepositoryImpl(BasePhaseRepositoryImpl):
+class DefaultCodeReviewCommentPhaseRepositoryImpl(BasePhaseRepositoryImpl):
     def __init__(
         self,
         model_config: ModelConfig,

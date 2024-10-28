@@ -13,7 +13,7 @@ from made.tools.file.repository.file_tool_repository_impl import FileToolReposit
 
 
 @PhaseRegistry.register()
-class CodingPhaseRepositoryImpl(BasePhaseRepositoryImpl):
+class DefaultCodingPhaseRepositoryImpl(BasePhaseRepositoryImpl):
     def __init__(
         self,
         model_config: ModelConfig,
