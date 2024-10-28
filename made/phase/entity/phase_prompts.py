@@ -42,10 +42,11 @@ As the {assistant_role}, to satisfy the new user's demands, you should write one
 and make sure that every detail of the architecture is, in the end, implemented as code. {gui} \
 Think step by step and reason yourself to the right decisions to make sure we get it right. \
 You will first lay out the names of the core classes, functions, methods that will be necessary, as w l as a quick comment on their purpose. \
-Then you will output the content of each file including complete code. Each file MUST strictly follow markdown code block format, \
+Each file MUST strictly follow markdown code block format, \
 where the following tokens must be replaced such that FILENAME is the lowercase file name including the file extension, \
 LANGUAGE in the programming language, DOCSTRING is a string literal specified in source code \
-that is used to document a specific segment of code, and CODE is the original code. You MUST put in fomat below:
+that is used to document a specific segment of code, and CODE is the original code. You MUST put in format below:
+
 FILENAME 
 ```LANGUAGE 
 ''' 
@@ -61,6 +62,15 @@ DOCSTRING
 ''' 
 CODE 
 ``` 
+
+FILENAME3
+```LANGUAGE 
+''' 
+DOCSTRING 
+''' 
+CODE 
+``` 
+
 You will start with the main file, then go to the ones that are imported by that file, and so on. \
 Please note that the code should be fully functional. Ensure to implement all functions. No placeholders (such as 'pass' in Python). \
 When discuss finish, start with symbol "<INFO>"  and list all the codes in format above. Final output should be like:
@@ -73,20 +83,32 @@ Task: {task}.
 Modality: {modality}.
 Programming Language: {language} 
 Codes: {codes} 
-Unimplemented File: {unimplemented_file} 
+Unimplemented File:
+
+{unimplemented_file}
+
 In our software, each file must strictly follow a markdown code block format, \
 where the following tokens must be replaced such that FILENAME is the lowercase file name including the file extension, \
 LANGUAGE in the programming language, \
 DOCSTRING is a string literal specified in source code that is used to document a specific segment of code, \
-and CODE is the original code: 
-FILENAME 
+and CODE is the original code You MUST put in format below:
+
+FILENAME
 ```LANGUAGE
 ''' DOCSTRING
 ''' CODE
 ``` 
+
 As the {assistant_role}, to satisfy the complete function of our developed software, you have to implement all methods \
 in the {unimplemented_file} file which contains a unimplemented class. Now, implement all methods of the {unimplemented_file} \
-and all other codes needed, then output the fully implemented codes, strictly following the required format.
+You SHOULD NOT change the FILENAME(also case sensitive). FILENAME MUST included in answer. You MUST put updated code in format below:
+
+FILENAME
+```LANGUAGE
+''' DOCSTRING
+''' CODE
+``` 
+
 """
 
     code_review_comment: str = \

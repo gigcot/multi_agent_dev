@@ -34,7 +34,6 @@ class ChatChainRepositoryImpl(ChatChainRepository):
     def preprocessing(self, env: ChatEnvRepositoryImpl):
         workspace = os.path.join(env.config.directory)
         os.makedirs(workspace, exist_ok=True)
-        FileToolRepositoryImpl.create_empty_file(os.path.join(workspace, "__init__.py"))
         log_path = os.path.join(workspace, "logs")
         os.makedirs(log_path, exist_ok=True)
         if env.config.git_management:

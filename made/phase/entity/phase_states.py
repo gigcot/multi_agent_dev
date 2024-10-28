@@ -1,5 +1,5 @@
-from dataclasses import dataclass
-from typing import List
+from dataclasses import dataclass, field
+from typing import List, Dict
 
 
 @dataclass
@@ -8,8 +8,8 @@ class PhaseStates:
     description: str = ""
     modality: str = ""
     language: str = ""
+    codes: Dict[str, str] = field(default_factory=dict)
     ideas: str = ""
-    codes: str = ""
     comments: str = ""
     review_comments: str = ""
     test_reports: str = ""
