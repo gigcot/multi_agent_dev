@@ -4,6 +4,8 @@ from made.chat_env.repository.chat_env_repository_impl import ChatEnvRepositoryI
 from made.engine.entity.ollama_config import OllamaConfig
 from made.phase.service.phase_service_impl import PhaseServiceImpl
 
+from examples.custom_phase.example_composed_phase import *
+
 
 if __name__ == "__main__":
     phase_service = PhaseServiceImpl(
@@ -19,7 +21,7 @@ if __name__ == "__main__":
 
     phases = [
         "DefaultDemandAnalysis",
-        # "DefaultLanguageChoose",
+        "InitCode",
         # "DefaultCoding",
         # "DefaultCodeComplete",
         # "DefaultCodeReviewComment",

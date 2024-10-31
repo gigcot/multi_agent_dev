@@ -1,6 +1,5 @@
 from made.engine import ModelConfig
 from made.phase import PhaseRegistry
-from made.phase.repository.base_phase_repository_impl import BasePhaseRepositoryImpl
 from made.phase.service.phase_service import PhaseService
 
 
@@ -15,8 +14,6 @@ class PhaseServiceImpl(PhaseService):
         self,
         phase_name: str,
         **kwargs,
-    ) -> BasePhaseRepositoryImpl:
-        return PhaseRegistry.get(phase_name)(
-            model_config=self.model_config,
-            **kwargs,
-        )
+    ):
+        phase = PhaseRegistry.get(phase_name)(model_config=self.model_config, **kwargs)
+        return phase
