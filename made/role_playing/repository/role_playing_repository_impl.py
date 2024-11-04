@@ -68,7 +68,10 @@ class RolePlayingRepositoryImpl(RolePlayingRepository):
 
         content = phase_prompt.format(
             **(
-                {"assistant_role": self.assistant_agent.agent_repository.role_name}
+                {
+                    "assistant_role": self.assistant_agent.agent_repository.role_name,
+                    "user_role": self.user_agent.agent_repository.role_name,
+                }
                 | placeholders
             )
         )
