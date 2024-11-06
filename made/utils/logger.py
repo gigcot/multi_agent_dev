@@ -18,7 +18,7 @@ class Logger:
         )
 
         if log_file_path is not None:
-            file_handler = logging.FileHandler(log_file_path)
+            file_handler = logging.FileHandler(log_file_path, encoding="utf-8")
             file_handler.setFormatter(formatter)
             self.__logger.addHandler(file_handler)
 
