@@ -23,8 +23,9 @@ class ChatChainRepositoryImpl(ChatChainRepository):
         phases: List[BasePhaseRepositoryImpl],
         save_chain: bool = False,
         file_path: Optional[str] = None,
+        phase_idx: Optional[int] = -1
     ):
-        for phase_idx, phase in enumerate(phases):
+        for phase in phases:
             if save_chain:
                 ChatChainRepositoryImpl.save_chain(
                     file_path=file_path,
@@ -40,6 +41,7 @@ class ChatChainRepositoryImpl(ChatChainRepository):
                     phase_name=phase.__class__.__name__,
                     phase_idx=phase_idx,
                 )
+            phase_idx += 1
         if save_chain:
             ChatChainRepositoryImpl.save_chain(
                 file_path=file_path,

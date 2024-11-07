@@ -54,10 +54,11 @@ class ChatChainServiceImpl(ChatChainService):
         self.save_chain = save_chain
         self.chain_path = os.path.join(directory, f"{save_name}.pkl")
         self.load_chain = os.path.exists(self.chain_path)
+        self.phase_idx = -1
         if self.load_chain:
-            env, last_phase, phase_idx = ChatChainRepositoryImpl.load_chain(self.chain_path)
+            env, last_phase, self.phase_idx = ChatChainRepositoryImpl.load_chain(self.chain_path)
             self.env = env
-            self.phases = self.get_phases(phases[phase_idx+1:])
+            self.phases = self.get_phases(phases[self.phase_idx+1:])
         else:
             self.phases = self.get_phases(phases)
 
@@ -73,5 +74,6 @@ class ChatChainServiceImpl(ChatChainService):
             phases=self.phases,
             save_chain=self.save_chain,
             file_path=self.chain_path,
+            phase_idx=self.phase_idx
         )
         self.chat_chain_repository.postprocessing()
