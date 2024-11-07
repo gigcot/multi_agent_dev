@@ -41,6 +41,9 @@ class ChatChainRepositoryImpl(ChatChainRepository):
             FileToolRepositoryImpl.update_file(
                 os.path.join(workspace, ".gitignore"), "logs/"
             )
+            GitToolRepositoryImpl.git_init(workspace)
+            GitToolRepositoryImpl.git_add(workspace)
+            GitToolRepositoryImpl.git_commit(workspace, f"Initial commit")
 
     # TODO clean directory(pycache, etc.)
     def postprocessing(self):
