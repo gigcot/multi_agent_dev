@@ -24,12 +24,29 @@ class ChatChainRepositoryImpl(ChatChainRepository):
         save_chain: bool = False,
         file_path: Optional[str] = None,
     ):
-        for phase in phases:
+        for phase_idx, phase in enumerate(phases):
+            if save_chain:
+                ChatChainRepositoryImpl.save_chain(
+                    file_path=file_path,
+                    global_env=env,
+                    phase_name=phase.__class__.__name__,
+                    phase_idx=phase_idx,
+                )
             self.execute_step(env=env, phase=phase)
             if save_chain:
                 ChatChainRepositoryImpl.save_chain(
-                    file_path=file_path, global_env=env, current_phase=phase.__class__.__name__
+                    file_path=file_path,
+                    global_env=env,
+                    phase_name=phase.__class__.__name__,
+                    phase_idx=phase_idx,
                 )
+        if save_chain:
+            ChatChainRepositoryImpl.save_chain(
+                file_path=file_path,
+                global_env=env,
+                phase_name="Done",
+                phase_idx=phase_idx,
+            )
 
     def preprocessing(self, env: ChatEnvRepositoryImpl):
         workspace = os.path.join(env.config.directory)
@@ -51,13 +68,13 @@ class ChatChainRepositoryImpl(ChatChainRepository):
 
     @staticmethod
     def save_chain(
-        file_path: str, global_env: ChatEnvRepositoryImpl, current_phase: str
+        file_path: str,
+        global_env: ChatEnvRepositoryImpl,
+        phase_name: str,
+        phase_idx: int,
     ) -> None:
-        current_phase = current_phase.replace("RepositoryImpl", "").replace("Phase", "")
-        chain_dict = {
-            "env": global_env,
-            "phase": current_phase,
-        }
+        phase_name = phase_name.replace("RepositoryImpl", "").replace("Phase", "")
+        chain_dict = {"env": global_env, "phase": phase_name, "phase_idx": phase_idx}
         with open(file_path, "wb") as f:
             pickle.dump(chain_dict, f)
         print()
@@ -73,6 +90,9 @@ class ChatChainRepositoryImpl(ChatChainRepository):
 
         env = chain_dict["env"]
         phase = chain_dict["phase"]
+        phase_idx = chain_dict["phase_idx"]
         print()
-        print(f"\033[31mChain Loaded from {file_path}.\nStarting from [{phase}] phase...\033[0m")
-        return env, phase
+        print(
+            f"\033[31mChain Loaded from {file_path}.\nStarting from [{phase}] phase...\033[0m"
+        )
+        return env, phase, phase_idx
