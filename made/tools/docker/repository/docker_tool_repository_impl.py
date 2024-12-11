@@ -42,7 +42,13 @@ class DockerToolRepositoryImpl(DockerToolRepository):
             if container.status != "running":
                 DockerToolRepositoryImpl.start_container(container)
         else:
-            images = [image.attrs["RepoTags"] for image in client.images.list(all=True)]
+            # images = [image.attrs["RepoTags"] for image in client.images.list(all=True)]
+            images = []
+            for img in client.images.list(all=True):
+                tags = img.attrs.get("RepoTags") or []
+                images.extend(tags)
+            print(f"\n\nimages:{images}\n\n")
+            
             if image_name not in images:
                 DockerToolRepositoryImpl.pull_image(client, image_name)
 
